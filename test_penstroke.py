@@ -5,6 +5,7 @@ import pytest
 import numpy as np
 import datetime as dt
 import penstroke as ps
+import random
 
 def gen_random_penstrokes(n):
     """Generates a random set of penstrokes
@@ -14,7 +15,7 @@ def gen_random_penstrokes(n):
 
     """
     stroke = ps.Penstroke()
-    [stroke.add_point(ps.PenPoint((i,i), (i,i), dt.datetime.now())) for i in range(n)]
+    [stroke.add_point(ps.PenPoint((i,i), (i,i), random.randint(0,10000))) for i in range(n)]
     return stroke
 
 def test_array_sort():
@@ -22,5 +23,4 @@ def test_array_sort():
     pos = stroke.get_positions()
     vel = stroke.get_velocities()
     time = stroke.get_timestamps()
-
     assert all(time[i] <= time[i+1] for i in range(len(stroke) - 1))
