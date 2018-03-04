@@ -30,6 +30,9 @@ class Penstroke():
         if not self.sorted is False:
             self._penpoints = sorted(self._penpoints, key=lambda penpoint: penpoint.timestamp)
 
+    def __len__(self):
+        return len(self._penpoints)
+
     def add_point(self, point):
         """Adds a point to the PenStroke
         :point: A reference to the new point
